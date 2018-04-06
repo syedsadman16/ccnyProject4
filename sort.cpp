@@ -34,7 +34,7 @@ struct igncaseComp {
 /* NOTE: set<string,igncaseComp> S; would declare a set S which
  * does its sorting in a case-insensitive way! */
 
-void rundescending(vector<string>& values) //function for -r
+void rundescending(vector<string>& values) //function for reverse
 {
 	sort(values.begin(),values.end());
 	for(size_t i=0;i<values.size()/2;i++)
@@ -43,7 +43,7 @@ void rundescending(vector<string>& values) //function for -r
 	}
 }
 
-void nodups(vector<string>& values) //function for -u
+void nodups(vector<string>& values) //function for unique
 {
 	set<string> s;
 	vector<string> k;
@@ -58,7 +58,7 @@ void nodups(vector<string>& values) //function for -u
 	values = k;
 }
 
-void nosens(vector<string>& values) //function for -f
+void nosens(vector<string>& values) //function for ignorecase
 {
 	sort(values.begin(), values.end(),igncaseComp());
 }
@@ -97,7 +97,47 @@ int main(int argc, char *argv[]) {
 		}
 	}
 
-	/* TODO: write me... */
+	#if 1
+	vector<string> values;
+	string x;
+	while (getline(cin,x))
+	{
+		values.push_back(x);
+	}
+	cin.clear();
+
+	#else
+	string line;
+	vector<string> values;
+	ifstream f("file");
+	while (getline(f,line))
+	{
+		values.push_back(line);
+	}
+
+	#endif
+	if (descending)
+	{
+		rundescending(values);
+		if (ignorecase)
+		{
+			nosens(values);
+			if (unique)
+			{
+				nodups(values);
+			}
+		}
+		else if (unique)
+		{
+			nodups(values);
+			if(ignorecase)
+			{
+				nosens(values);
+			}
+		}
+	}
+
+	else if
 
 	return 0;
 }
