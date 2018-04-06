@@ -97,6 +97,8 @@ int main(int argc, char *argv[]) {
 		}
 	}
 
+	/* TODO: write me... */
+
 	#if 1
 	vector<string> values;
 	string x;
@@ -137,7 +139,26 @@ int main(int argc, char *argv[]) {
 		}
 	}
 
-	else if
+	else if (ignorecase)
+	{
+		nosens(values);
+		if (descending)
+		{
+			rundescending(values);
+			if (unique)
+			{
+				nodups(values);
+			}
+		}
+		else if (unique)
+		{
+			nodups(values);
+			if(descending)
+			{
+				rundescending(values);
+			}
+		}
+	}
 
 	return 0;
 }
