@@ -67,10 +67,11 @@ int main(int argc, char *argv[]) {
 
 	/* TODO: write me... */
 	vector<char> V;
-	while (optind < argc)
-    V.push_back(argv[optind++]);
-	int x; char k;
-	for(int i=0;i<V.size()-1;i++){
+	char L,k;
+	int x;
+	while(cin>>L) V.push_back(L);
+	cout<<'\n';
+	for(int i=0;i<V.size()-2;i++){
 		x=rand()%(V.size()-i)+i;
 		k=V[x];
 		V[x]=V[i];
