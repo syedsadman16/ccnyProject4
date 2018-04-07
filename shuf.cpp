@@ -61,10 +61,24 @@ int main(int argc, char *argv[]) {
 				return 1;
 		}
 	}
+
 	/* NOTE: the system's shuf does not read stdin *and* use -i or -e.
 	 * Even -i and -e are mutally exclusive... */
 
 	/* TODO: write me... */
-
+	vector<char> V;
+	while (optind < argc)
+    V.push_back(argv[optind++]);
+	int x; char k;
+	for(int i=0;i<V.size()-1;i++){
+		x=rand()%(V.size()-i)+i;
+		k=V[x];
+		V[x]=V[i];
+		V[i]=k;
+		}
+	for(int i=0;i<V.size();i++){
+		cout<<V[i];
+		}
+	cout<<'\n';
 	return 0;
 }
