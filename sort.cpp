@@ -11,12 +11,12 @@ using std::endl;
 #include <set>
 using std::set;
 using std::multiset;
+#include <strings.h>
 #include <algorithm>
 using std::swap;
 using std::sort;
 #include <fstream>
 using namespace std;
-#include <strings.h>
 
 static const char* usage =
 "Usage: %s [OPTIONS]...\n"
@@ -34,16 +34,16 @@ struct igncaseComp {
 /* NOTE: set<string,igncaseComp> S; would declare a set S which
  * does its sorting in a case-insensitive way! */
 
-void rundescending(vector<string>& values) //function for reverse
+void rundescending(vector<string> &values) //function for reverse
 {
 	sort(values.begin(),values.end());
-	for(size_t i=0;i<values.size()/2;i++)
+	for(size_t i=0; i < values.size()/2; i++)
 	{
 		swap(values[i], values[values.size()-1-i]);
 	}
 }
 
-void nodups(vector<string>& values) //function for unique
+void nodups(vector<string> &values) //function for unique
 {
 	set<string> s;
 	vector<string> k;
@@ -51,16 +51,16 @@ void nodups(vector<string>& values) //function for unique
 	{
 		s.insert(*i);
 	}
-	for (set<string>::iterator i =s.begin(); i != s.end(); i++)
+	for (set<string>::iterator i = s.begin(); i != s.end(); i++)
 	{
 		k.push_back(*i);
 	}
 	values = k;
 }
 
-void nosens(vector<string>& values) //function for ignorecase
+void nosens(vector<string> &values) //function for ignorecase
 {
-	sort(values.begin(), values.end(),igncaseComp());
+	sort(values.begin(), values.end(), igncaseComp());
 }
 
 
@@ -108,6 +108,7 @@ int main(int argc, char *argv[]) {
 	}
 	cin.clear();
 
+	/*There is an issue at line 111. When I run the random tests, it says "No such file or directory". Plus, the color is these lines are different from the rest. If I remove the #, then everything goes back to its normal colors. */
 	#else
 	string line;
 	vector<string> values;
@@ -158,6 +159,38 @@ int main(int argc, char *argv[]) {
 				rundescending(values);
 			}
 		}
+	}
+
+	else if (unique)
+	{
+		nodups (values);
+		if (descending)
+		{
+			rundescending (values);
+			if (ignorecase)
+			{
+				nosens (values);
+			}
+		}
+
+		else if (ignorecase)
+		{
+			nosens (values);
+			if (descending)
+			{
+				rundescending (values);
+			}
+		}
+	}
+
+	else
+	{
+		sort (values.begin(), values.end());
+	}
+
+	for (vector <string>::iterator i = values.begin(); i != values.end(); i++)
+	{
+		cout << *i << "\n";
 	}
 
 	return 0;
