@@ -6,7 +6,7 @@
  * and the book, please list everything.  And remember- citing a source does
  * NOT mean it is okay to COPY THAT SOURCE.  What you submit here **MUST BE
  * YOUR OWN WORK**.
- * References:
+ * References: cplusplus.com for isspace 
  *
  *
  * Finally, please indicate approximately how many hours you spent on this:
@@ -14,6 +14,7 @@
  */
 #include <iostream>
 #include <string>
+#include <locale> //isspace 
 using std::string;
 #include <set>
 using std::set;
@@ -73,15 +74,20 @@ int main(int argc, char *argv[])
 		}
 	}
 	
+		int bytes();	
+		return 0;
+} //end main function
+
+int bytes(){
 	string input;
 	int count = 0;
 	int whitespace = 0;
 	int total;
 
-	while(cin >> input){
-		for(int i = 0; i < input.size()+1; i++){
+	while(getline(cin,input)){
+		for(int i = 0; i < input.size(); i++){
 
-			if(input[i] == " "){
+			if(isspace(input[i])){
 			whitespace++;
 			}
 			else {
@@ -89,11 +95,13 @@ int main(int argc, char *argv[])
 			}
 	}
 		total = count + whitespace;
-		cout << total;
-
+		cout << total << "\n";
+		count = 0;
+		whitespace = 0;
 	}
-//thinking of adding functions and calling the inside here
-//function for each of the params
-	
-		return 0;
-}
+
+} //end bytes function
+
+
+
+
