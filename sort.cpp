@@ -36,7 +36,7 @@ struct igncaseComp {
 
 void rundescending(vector<string> &values) //function for reverse
 {
-	sort(values.begin(),values.end());
+	sort(values.begin(), values.end());
 	for(size_t i=0; i < values.size()/2; i++)
 	{
 		swap(values[i], values[values.size()-1-i]);
@@ -47,7 +47,7 @@ void nodups(vector<string> &values) //function for unique
 {
 	set<string> s;
 	vector<string> k;
-	for (vector<string>::iterator i = values.begin(); i != values.end();i++)
+	for (vector<string>::iterator i = values.begin(); i != values.end(); i++)
 	{
 		s.insert(*i);
 	}
@@ -109,6 +109,8 @@ int main(int argc, char *argv[]) {
 	cin.clear();
 
 	/*There is an issue at line 111. When I run the random tests, it says "No such file or directory". Plus, the color is these lines are different from the rest. If I remove the #, then everything goes back to its normal colors. */
+
+	/*The above issue might be fixed...but there are still errors in the file (only 4 tests failed)*/
 	#else
 	string line;
 	vector<string> values;
@@ -133,7 +135,7 @@ int main(int argc, char *argv[]) {
 		else if (unique)
 		{
 			nodups(values);
-			if(ignorecase)
+			if (ignorecase)
 			{
 				nosens(values);
 			}
@@ -154,7 +156,7 @@ int main(int argc, char *argv[]) {
 		else if (unique)
 		{
 			nodups(values);
-			if(descending)
+			if (descending)
 			{
 				rundescending(values);
 			}
@@ -185,10 +187,10 @@ int main(int argc, char *argv[]) {
 
 	else
 	{
-		sort (values.begin(), values.end());
+		sort(values.begin(), values.end());
 	}
 
-	for (vector <string>::iterator i = values.begin(); i != values.end(); i++)
+	for (vector<string>::iterator i = values.begin(); i != values.end(); i++)
 	{
 		cout << *i << "\n";
 	}
