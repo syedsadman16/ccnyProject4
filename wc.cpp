@@ -12,13 +12,14 @@
  * Finally, please indicate approximately how many hours you spent on this:
  * #hours: 
  */
-
+#include <iostream>
 #include <string>
 using std::string;
 #include <set>
 using std::set;
 #include <getopt.h> // to parse long arguments.
 #include <cstdio> // printf
+using namespace std;
 
 static const char* usage =
 "Usage: %s [OPTIONS]...\n"
@@ -43,12 +44,12 @@ int main(int argc, char *argv[])
 		{"help",            no_argument,   0, 'h'},
 		{0,0,0,0}
 	};
-	// process options:
-	char c;
+	// process options: 
+	char c;    //c is set to whatever param is used
 	int opt_index = 0;
 	while ((c = getopt_long(argc, argv, "clwuLh", long_opts, &opt_index)) != -1) {
 		switch (c) {
-			case 'c':
+			case 'c': //for each of these, cout value found in functions
 				charonly = 1;
 				break;
 			case 'l':
@@ -71,8 +72,28 @@ int main(int argc, char *argv[])
 				return 1;
 		}
 	}
+	
+	string input;
+	int count = 0;
+	int whitespace = 0;
+	int total;
 
-	/* TODO: write me... */
+	while(cin >> input){
+		for(int i = 0; i < input.size()+1; i++){
 
-	return 0;
+			if(input[i] == " "){
+			whitespace++;
+			}
+			else {
+			count++;
+			}
+	}
+		total = count + whitespace;
+		cout << total;
+
+	}
+//thinking of adding functions and calling the inside here
+//function for each of the params
+	
+		return 0;
 }
