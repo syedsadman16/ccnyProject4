@@ -75,6 +75,7 @@ int main(int argc, char *argv[])
 	}
 	
 		int bytes();	
+		cout << bytes();
 		return 0;
 } //end main function
 
