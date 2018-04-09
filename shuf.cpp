@@ -66,11 +66,31 @@ int main(int argc, char *argv[]) {
 	 * Even -i and -e are mutally exclusive... */
 
 	/* TODO: write me... */
+	//manual input
+	//-------------------------------------------------------
+
+	int x; char k;
+	/*
 	vector<char> V;
-	char L,k;
-	int x;
 	while(cin>>L) V.push_back(L);
 	cout<<'\n';
+	for(int i=0;i<V.size()-1;i++){
+		x=rand()%(V.size()-i)+i;
+		k=V[x];
+		V[x]=V[i];
+		V[i]=k;
+		}
+	for(int i=0;i<V.size();i++){
+		cout<<V[i];
+		}
+	cout<<'\n';
+	*/
+	//input -i -e -n
+	vector<char> V;
+	while (optind < argc)
+    V.push_back(*argv[optind++]);
+	cout<<'\n';
+	srand(time(0));
 	for(int i=0;i<V.size()-1;i++){
 		x=rand()%(V.size()-i)+i;
 		k=V[x];
