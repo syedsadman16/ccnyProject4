@@ -71,7 +71,7 @@ int main(int argc, char *argv[]) {
 	int x;
 	while(cin>>L) V.push_back(L);
 	cout<<'\n';
-	for(int i=0;i<V.size()-2;i++){
+	for(int i=0;i<V.size()-1;i++){
 		x=rand()%(V.size()-i)+i;
 		k=V[x];
 		V[x]=V[i];
