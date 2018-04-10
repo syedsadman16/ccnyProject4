@@ -15,6 +15,23 @@ static const char* usage =
 "   -u,--unique        only print lines that are unique.\n"
 "   --help             show this message and exit.\n";
 
+
+
+int Couning_Uniq()
+{
+	map<string,int> Map1; /* store frequency table */
+	string Sentence; /* hold an input */
+	while (cin >> Sentence) Map1[Sentence]++;
+		/* now just print F... */
+	for (map<string,int>::iterator it = Map1.begin(); it != Map1.end(); it++) {
+		cout << (*it).first << ":\t" << (*it).second << "\n";
+	}
+
+	return 0;
+}
+
+
+
 int main(int argc, char *argv[]) {
 
 	// define long options
@@ -50,7 +67,6 @@ int main(int argc, char *argv[]) {
 	}
 
 	//==============================================================================
-	// My Code Starts from here:
 	//==============================================================================
 
 	/* Thought Process: There are 2 strings and that are being compared using the equality test. This is still a work in progress, since whenever I ouput a particular sentence with same words it DOES NOT work properly yet. However this does compile! I will be working on this throughout the weekend. I was wondering if we need to use sets or maps instead, but I'm struggling on how to implement them. However, I will keep working on this overnight ... so use git pull.
@@ -58,15 +74,24 @@ int main(int argc, char *argv[]) {
 
 	// WE NEED TO USE INDUCTION HERE for n amount of inputs -- getline ???
 
-	string Sentence; // for map -
+
+	int Couning_Uniq(); // Fucntion Call: Counts all the inputs;
+
+	string Sentence;
 	std::getline (std::cin,Sentence); // reads line;
-	int Counter; // for map -
-	// Step 1: DECLARE MAPS:
+	int Counter;
 	std::map<string, int> Map1; // map that holds the sentence.
 	Map1.insert(pair<string, int> (Sentence, Counter));
-
 	// Syntax Reference: std::getline (std::cin,name);
 
+
+
+
+
+
+
+
+/*
 	// Print the duplicate words -- using std::cout (standard output):
 	// Print the unique words -- using std::cout (standard output):
 	for (map<string, int>::iterator it = Map1.begin(); it != Map1.end(); it++) {
@@ -85,7 +110,7 @@ int main(int argc, char *argv[]) {
 				}
 				cout << endl; // For formatting purposes.
 		}
-
+*/
 
 	return 0;
   }
