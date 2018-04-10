@@ -3,6 +3,7 @@
 #include <string>
 using std::string;
 #include <iostream>
+#include <map>
 using namespace std;
 
 
@@ -55,66 +56,42 @@ int main(int argc, char *argv[]) {
 	/* Thought Process: There are 2 strings and that are being compared using the equality test. This is still a work in progress, since whenever I ouput a particular sentence with same words it DOES NOT work properly yet. However this does compile! I will be working on this throughout the weekend. I was wondering if we need to use sets or maps instead, but I'm struggling on how to implement them. However, I will keep working on this overnight ... so use git pull.
 	*/
 
-	string S1;
-	string S2;  // WE NEED TO USE INDUCTION HERE for n amount of inputs -- getline ???
-	string Unique;
-	string Duplicate;
+	// WE NEED TO USE INDUCTION HERE for n amount of inputs -- getline ???
+
+	string Sentence; // for map -
+	std::getline (std::cin,Sentence); // reads line;
+	int Counter; // for map -
+	// Step 1: DECLARE MAPS:
+	std::map<string, int> Map1; // map that holds the sentence.
+	Map1.insert(pair<string, int> (Sentence, Counter));
+
 	// Syntax Reference: std::getline (std::cin,name);
-	std::getline (std::cin,S1);
-	std::getline (std::cin,S2);
-	int temp;
-	char p;
 
-	//For unique strings
-	if (S1.length() != S2.length()){
-		Unique += S1;
-		Unique += ' ';
-		Unique += S2;
-	}
-	else if (S1[0] != S2[0]){
-		Unique += S1;
-		Unique += ' ';
-		Unique += S2;
-	}
-	//for dup strings
-	else if (S1[0] == S2[0]){
-		for (int i=1; i < S1.length(); ++i){
-			//if (S[i] == V[i]){
-			//if a letter matches continue checking the next
-			//continue;
-			//}
-			if (S1[i] != S2[i]) {
-				// If there is a letter that does match they are not duplicates so add them to unique.
-				Unique += S1;
-				Unique += ' ';
-				Unique += S2;
-				break;
-			}
-			temp = i;
-			// This will break when it finds it's duplicates or when i reaches the length of S and they are duplicates.
-		}
-		if (temp ==  S1.length()-1){
-			Duplicate += S1;
-			Duplicate += ' ';
-			Duplicate += S2;
-		}
-
-	}
-
+	// Print the duplicate words -- using std::cout (standard output):
 	// Print the unique words -- using std::cout (standard output):
-	cout << "Now printing unique words: " << endl;
-	for (int i=0; i < Unique.length(); i++){
-		cout << Unique[i];
-	}
-	cout << endl; // For formatting purposes.
-
-	cout << "Now printing duplicate words: " << endl;
-	for (int i=0; i < Duplicate.length(); i++){
-		cout << Duplicate[i];
-	}
-	cout << endl; // For formatting purposes.
+	for (map<string, int>::iterator it = Map1.begin(); it != Map1.end(); it++) {
+		// The Second Value is the integer number of --> Counter
+				if(it->second == 1) {
+						cout << "Now printing Unique words: :D ... " << endl;
+						cout << it->first << " " << flush;
+						cout << endl; // For formatting purposes.
+				}
+				if(it->second != 1) {
+						cout << "Now printing Duplicate words: :D ... " << endl;
+						cout << it->first << " " << flush;
+				}
+				else {
+					cout << "Invalid argument :D ... " << endl;
+				}
+				cout << endl; // For formatting purposes.
+		}
 
 
 	return 0;
-}
+  }
+
+
+
+
+
 
