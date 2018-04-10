@@ -20,6 +20,7 @@ using std::string;
 using std::set;
 #include <getopt.h> // to parse long arguments.
 #include <cstdio> // printf
+#include <vector>
 using namespace std;
 
 static const char* usage =
@@ -166,6 +167,35 @@ int lines(){
 			linesNumbr = 1;
 			}	
 
+int longest(){
+	string line; 
+	int longest;
+	int maxwords = 0;
+	int counts = 0;
+	vector<string> str;
+	
+	while(getline(cin, line)){
+		line.push_back(str);
+		for(int i =0; i<str.size(); i++){
+			for(int j = 1; j < line.size() - 1; j++){
+			if(isspace(str[i][j]){
+			maxwords++;
+			}
+			else {
+			counts++;
+			}
+			}
+		if(counts + maxwords > longest)
+	//	cout << "
+		}	
 
+
+	}
+
+
+
+
+
+}
 
 }
