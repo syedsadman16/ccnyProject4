@@ -6,7 +6,7 @@
  * and the book, please list everything.  And remember- citing a source does
  * NOT mean it is okay to COPY THAT SOURCE.  What you submit here **MUST BE
  * YOUR OWN WORK**.
- * References: cplusplus.com for isspace 
+ * References: cplusplus.com  
  *
  *
  * Finally, please indicate approximately how many hours you spent on this:
@@ -50,14 +50,18 @@ int main(int argc, char *argv[])
 	int opt_index = 0;
 	while ((c = getopt_long(argc, argv, "clwuLh", long_opts, &opt_index)) != -1) {
 		switch (c) {
-			case 'c': //for each of these, cout value found in functions
+			case 'c': //call -c to count bytes
 				charonly = 1;
+				int bytes();
+				cout << bytes();			
 				break;
 			case 'l':
 				linesonly = 1;
 				break;
-			case 'w':
+			case 'w': //call -w to count words
 				wordsonly = 1;
+				int words();
+				cout << words();
 				break;
 			case 'u':
 				uwordsonly = 1;
@@ -74,18 +78,17 @@ int main(int argc, char *argv[])
 		}
 	}
 	
-		int bytes();	
-		cout << bytes();
+
 		return 0;
 } //end main function
 
 int bytes(){
-	string input;
-	int count = 0;
-	int whitespace = 0;
+	string input; 
+	int count = 0; 
+	int whitespace = 0; 
 	int total;
 
-	while(getline(cin,input)){
+       while(getline(cin,input)){ //gets line of input 
 		for(int i = 0; i < input.size(); i++){
 
 			if(isspace(input[i])){
@@ -99,10 +102,22 @@ int bytes(){
 		cout << total << "\n";
 		count = 0;
 		whitespace = 0;
-	}
+
+       }
 
 } //end bytes function
 
+int words(){
+	string word;
+	int wordCount;
+	while(getline(cin,word)){
+		for(int i = 0; i < word.size(); i++){
+			if(isspace(word[i]))
+			wordCount++;
+		}
+		cout << wordCount + 1 << "\n";
+		wordCount = 0;
+		
+	}
 
-
-
+} //end words function
