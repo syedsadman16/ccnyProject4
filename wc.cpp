@@ -57,6 +57,8 @@ int main(int argc, char *argv[])
 				break;
 			case 'l':
 				linesonly = 1;
+				int lines();
+				cout << lines();
 				break;
 			case 'w': //call -w to count words
 				wordsonly = 1;
@@ -78,8 +80,38 @@ int main(int argc, char *argv[])
 		}
 	}
 	
+	//Putting it all together... default for when no --argument passed
+	string text;
+	int letterCount = 0;
+	int space = 0;
+	int totalLetters = 0;
+	int lineCount = 1;
+	int wordsCount = 0;
 
-		return 0;
+	while(getline(cin,text)) {
+		for(int i = 0; i < text.size(); i++){
+			if(isspace(text[i])){
+			space++;
+			wordsCount++;
+			}
+			else {
+			letterCount++;
+			}
+			if(text[i] == '\n')
+			++lineCount;
+			
+	}
+		totalLetters = space + letterCount;
+		cout << lineCount << " " <<  wordsCount + 1 << " " <<  totalLetters  << " " <<  text  <<"\n"; 
+		space = 0; //resetting the values for next string thats inputted
+		wordsCount = 0;
+		lineCount = 1;
+		letterCount = 0;	
+
+	}
+
+
+			return 0;
 } //end main function
 
 int bytes(){
@@ -103,7 +135,7 @@ int bytes(){
 		count = 0;
 		whitespace = 0;
 
-       }
+        }
 
 } //end bytes function
 
@@ -121,3 +153,19 @@ int words(){
 	}
 
 } //end words function
+
+int lines(){
+	string wrd; 
+	int linesNumbr = 1; 
+	while(getline(cin,wrd)){
+		for(int i = 0; i<wrd.size(); i++){
+			if(wrd[i] == '\n')
+			linesNumbr++;
+		}
+			cout << linesNumbr<<"\n";
+			linesNumbr = 1;
+			}	
+
+
+
+}
