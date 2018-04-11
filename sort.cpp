@@ -108,9 +108,8 @@ int main(int argc, char *argv[]) {
 	}
 	cin.clear();
 
-	/*There is an issue at line 111. When I run the random tests, it says "No such file or directory". Plus, the color is these lines are different from the rest. If I remove the #, then everything goes back to its normal colors. */
+	/* The issue I had is resolved. However, there are still 4 errors remaining when I do the random tests */
 
-	/*The above issue might be fixed...but there are still errors in the file (only 4 tests failed)*/
 	#else
 	string line;
 	vector<string> values;
