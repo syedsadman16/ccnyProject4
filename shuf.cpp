@@ -67,39 +67,26 @@ int main(int argc, char *argv[]) {
 
 	/* TODO: write me... */
 	//manual input
-	//-------------------------------------------------------
-
 	int x; char k;
-	/*
-	vector<char> V;
-	while(cin>>L) V.push_back(L);
+	string V;
+
+	/*while (optind < argc)
+    V+=argv[optind++];
+	cout<<'\n';*/
+
+	getline(cin,V);
 	cout<<'\n';
-	for(int i=0;i<V.size()-1;i++){
-		x=rand()%(V.size()-i)+i;
-		k=V[x];
-		V[x]=V[i];
-		V[i]=k;
-		}
-	for(int i=0;i<V.size();i++){
-		cout<<V[i];
-		}
-	cout<<'\n';
-	*/
-	//input -i -e -n
-	vector<char> V;
-	while (optind < argc)
-    V.push_back(*argv[optind++]);
-	cout<<'\n';
+
 	srand(time(0));
-	for(int i=0;i<V.size()-1;i++){
-		x=rand()%(V.size()-i)+i;
+	for(int i=0;i<V.length()-1;i++){
+		x=rand()%(V.length()-i)+i;
 		k=V[x];
 		V[x]=V[i];
 		V[i]=k;
 		}
-	for(int i=0;i<V.size();i++){
+	/*for(int i=0;i<V.size();i++){
 		cout<<V[i];
-		}
-	cout<<'\n';
+		}*/
+	cout<<V<<'\n';
 	return 0;
 }
