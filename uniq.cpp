@@ -4,6 +4,10 @@
 using std::string;
 #include <iostream>
 #include <map>
+using std::map;
+#include <vector>
+#include <set>
+using std::set;
 using namespace std;
 
 
@@ -17,23 +21,14 @@ static const char* usage =
 
 
 
-int Couning_Uniq()
-{
-	map<string,int> Map1; /* store frequency table */
-	string Sentence; /* hold an input */
-	while (cin >> Sentence) Map1[Sentence]++;
-		/* now just print F... */
-	for (map<string,int>::iterator it = Map1.begin(); it != Map1.end(); it++) {
-		cout << (*it).first << ":\t" << (*it).second << "\n";
-	}
 
-	return 0;
-}
+
+
+int Counter();
 
 
 
 int main(int argc, char *argv[]) {
-
 	// define long options
 	static int showcount=0, dupsonly=0, uniqonly=0;
 	static struct option long_opts[] = {
@@ -66,57 +61,87 @@ int main(int argc, char *argv[]) {
 		}
 	}
 
-	//==============================================================================
-	//==============================================================================
+	/* TODO: write me... */
 
-	/* Thought Process: There are 2 strings and that are being compared using the equality test. This is still a work in progress, since whenever I ouput a particular sentence with same words it DOES NOT work properly yet. However this does compile! I will be working on this throughout the weekend. I was wondering if we need to use sets or maps instead, but I'm struggling on how to implement them. However, I will keep working on this overnight ... so use git pull.
-	*/
+	Counter(); // Function call to count words ...
 
-	// WE NEED TO USE INDUCTION HERE for n amount of inputs -- getline ???
-
-
-	int Couning_Uniq(); // Fucntion Call: Counts all the inputs;
-
-	string Sentence;
-	std::getline (std::cin,Sentence); // reads line;
-	int Counter;
-	std::map<string, int> Map1; // map that holds the sentence.
-	Map1.insert(pair<string, int> (Sentence, Counter));
-	// Syntax Reference: std::getline (std::cin,name);
-
-
-
-
-
-
-
-
-/*
-	// Print the duplicate words -- using std::cout (standard output):
-	// Print the unique words -- using std::cout (standard output):
-	for (map<string, int>::iterator it = Map1.begin(); it != Map1.end(); it++) {
-		// The Second Value is the integer number of --> Counter
-				if(it->second == 1) {
-						cout << "Now printing Unique words: :D ... " << endl;
-						cout << it->first << " " << flush;
-						cout << endl; // For formatting purposes.
-				}
-				if(it->second != 1) {
-						cout << "Now printing Duplicate words: :D ... " << endl;
-						cout << it->first << " " << flush;
-				}
-				else {
-					cout << "Invalid argument :D ... " << endl;
-				}
-				cout << endl; // For formatting purposes.
+	string input;
+	getline(cin, input);
+	string word;
+	int count = 0;
+	vector <string> test;
+	vector <string> final;
+	for(int i = 0; i < input.length(); i++){
+		if(input[i]!= 32){
+			word+=input[i];
+			if(input[i] == input[input.length()-1]){
+				test.push_back(word);
+			}
 		}
-*/
+
+		else if(input[i]== 32){
+			test.push_back(word);
+			word.clear();
+		}
+
+		// map<data type, data type> name (parameters)'
+		// map<string, int> Map1 (word, count);
+		// map.insert();;;;
+
+	}
+
+	if(uniqonly = 1){
+	for(int x = 0; x < test.size(); x++){
+
+		if((test[x-1]!= test[x])&&(test[x]!=test[x+1])){
+
+			cout << test[x] << endl;
+		}
+	}
+}
+
+
+
+	//duplicate
+	count = 0;
+
+	for(int x = 0; x < test.size(); x++){
+
+		if((test[x] == test[x+1])&&(test[x] == test[x-1])){
+			continue;
+			}
+		else if (test[x] == test[x-1]){
+			continue;
+			}
+		else if((test[x] == test[x+1])&&(test[x] != test[x-1])){
+				cout << test[x] << endl;
+			}
+		}
 
 	return 0;
-  }
+}
 
 
 
+	int Counter()
+{
+	map<string,int> F; /* store frequency table */
+	string s; /* hold an input */
+	while (cin >> s) F[s]++;
+	// just print it out:
+	for (map<string,int>::iterator i = F.begin(); i != F.end(); i++) {
+				if (i->second == 1){
+							cout << endl << "Now printing unique: " << endl;
+							cout << "-----------------------------" << endl;
+							cout << (*i).first << " :\t" << (*i).second << endl;
+				}else{
+						cout << endl << "Now Printing duplicates: " << endl;
+						cout << "---------------------------------" << endl;
+						cout << i->first << " :\t" << i->second << endl;
+				}
+   }
+		return 0;
+	}
 
 
 
