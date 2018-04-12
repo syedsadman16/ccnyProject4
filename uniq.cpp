@@ -7,6 +7,8 @@ using std::string;
 using std::map;
 #include <vector>
 #include <set>
+#include<iomanip>
+using std::setw;
 using std::set;
 using namespace std;
 
@@ -20,13 +22,17 @@ static const char* usage =
 "   --help             show this message and exit.\n";
 
 
+//Functions Prototypes:
+void Counter();
+void dups();
+void uniq();
+void none();
+void CU();
+void CD();
 
-
-
-
-int Counter();
-
-
+// Global Variables:
+map<string,int> F; /* store frequency table */
+string s; /* hold an input */
 
 int main(int argc, char *argv[]) {
 	// define long options
@@ -59,89 +65,113 @@ int main(int argc, char *argv[]) {
 				printf(usage,argv[0]);
 				return 1;
 		}
-	}
 
+	}
+	//=====================================================================
 	/* TODO: write me... */
 
-	Counter(); // Function call to count words ...
 
-	string input;
-	getline(cin, input);
-	string word;
-	int count = 0;
-	vector <string> test;
-	vector <string> final;
-	for(int i = 0; i < input.length(); i++){
-		if(input[i]!= 32){
-			word+=input[i];
-			if(input[i] == input[input.length()-1]){
-				test.push_back(word);
-			}
-		}
+	if(!showcount && !dupsonly && !uniqonly) none();
+	else if (dupsonly && uniqonly) return 0; // contradiction!!!!
+	else if (showcount && dupsonly) CD();
+	else if (showcount && uniqonly) CU();
+	else if (showcount) Counter();
+	else if (uniqonly) uniq();
+	else if (dupsonly) dups();
 
-		else if(input[i]== 32){
-			test.push_back(word);
-			word.clear();
-		}
-
-		// map<data type, data type> name (parameters)'
-		// map<string, int> Map1 (word, count);
-		// map.insert();;;;
-
-	}
-
-	if(uniqonly = 1){
-	for(int x = 0; x < test.size(); x++){
-
-		if((test[x-1]!= test[x])&&(test[x]!=test[x+1])){
-
-			cout << test[x] << endl;
-		}
-	}
-}
-
-
-
-	//duplicate
-	count = 0;
-
-	for(int x = 0; x < test.size(); x++){
-
-		if((test[x] == test[x+1])&&(test[x] == test[x-1])){
-			continue;
-			}
-		else if (test[x] == test[x-1]){
-			continue;
-			}
-		else if((test[x] == test[x+1])&&(test[x] != test[x-1])){
-				cout << test[x] << endl;
-			}
-		}
+	//=====================================================================
 
 	return 0;
 }
 
 
 
-	int Counter()
-{
-	map<string,int> F; /* store frequency table */
-	string s; /* hold an input */
-	while (cin >> s) F[s]++;
-	// just print it out:
-	for (map<string,int>::iterator i = F.begin(); i != F.end(); i++) {
+
+	void Counter()
+	{
+				while (getline(cin,s)) F[s]++;
+				// just print it out:
+				for (map<string,int>::iterator i = F.begin(); i != F.end(); i++) {
 				if (i->second == 1){
-							cout << endl << "Now printing unique: " << endl;
-							cout << "-----------------------------" << endl;
-							cout << (*i).first << " :\t" << (*i).second << endl;
-				}else{
-						cout << endl << "Now Printing duplicates: " << endl;
-						cout << "---------------------------------" << endl;
-						cout << i->first << " :\t" << i->second << endl;
+
+						cout << setw(7) << (*i).second << " " << (*i).first << endl;
 				}
-   }
-		return 0;
+				if(i->second != 1){
+
+						cout << setw(7) << i->second << " " << i->first << endl;
+				}
+			}
 	}
 
+	void dups()
+	{
+				while (getline(cin,s)) F[s]++;
+				// just print it out:
+				for (map<string,int>::iterator i = F.begin(); i != F.end(); i++) {
+				if (i->second != 1){
+						string Duplicate = i->first; // Managing an invariant;
+
+						cout << Duplicate << endl;
+				}else{
+						// do nothing no unique's to be shown!!!
+				}
+			}
+		}
+
+	void uniq()
+	{
+				while (getline(cin,s)) F[s]++;
+				// just print it out:
+				for (map<string,int>::iterator i = F.begin(); i != F.end(); i++) {
+				if (i->second == 1){
+							string Unique = i-> first;
+
+							cout << Unique << endl;
+			}else{
+					// do nothing here no duplicatdsssses to be shown!!!
+			}
+		}
+	}
+	void none(){
+
+			while (getline(cin,s)) F[s]++;
+			// just print it out: No numbers!!!
+			for (map<string,int>::iterator i = F.begin(); i != F.end(); i++) {
+			if (i->second == 1){
+						// This one prints the Unique ONLY
+							cout << (*i).first << endl;
+				}
+				if(i->second != 1){
+						string Duplicate = i->first; // Managing an invariant;
+						// This one prints the Duplicate's ONLY
+						cout << Duplicate << endl;
+				}
+		}
+}
+
+	void CU() {
+
+
+			while (getline(cin,s)) F[s]++;
+			// just print it out:
+			for (map<string,int>::iterator i = F.begin(); i != F.end(); i++) {
+						if (i->second == 1){
+						// This one prints the numbers and the unique!
+						cout << setw(7) << (*i).second << " " << (*i).first << endl;
+						}
+			}
+	}
+
+	void CD() {
+
+					while (getline(cin,s)) F[s]++;
+					// just print it out:
+					for (map<string,int>::iterator i = F.begin(); i != F.end(); i++) {
+					if (i->second != 1){
+						// This one prints out the number and the duplicate!
+						cout << setw(7) << (*i).second << " " << (*i).first << endl;
+						}
+			}
+	}
 
 
