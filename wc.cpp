@@ -6,7 +6,7 @@
  * and the book, please list everything.  And remember- citing a source does
  * NOT mean it is okay to COPY THAT SOURCE.  What you submit here **MUST BE
  * YOUR OWN WORK**.
- * References: cplusplus.com  
+ * References: cplusplus.com
  *
  *
  * Finally, please indicate approximately how many hours you spent on this:
@@ -14,7 +14,7 @@
  */
 #include <iostream>
 #include <string>
-#include <locale> //isspace 
+#include <locale> //isspace
 using std::string;
 #include <set>
 using std::set;
@@ -47,7 +47,7 @@ int main(int argc, char *argv[])
 		{"help",            no_argument,   0, 'h'},
 		{0,0,0,0}
 	};
-	// process options: 
+	// process options:
 	char c;    //c is set to whatever param is used
 	int opt_index = 0;
 	while ((c = getopt_long(argc, argv, "clwuLh", long_opts, &opt_index)) != -1) {
@@ -55,22 +55,22 @@ int main(int argc, char *argv[])
 			case 'c': //call -c to count bytes
 				charonly = 1;
 				int bytes(); //initialize function
-				cout << bytes(); //print contents of function			
+				cout << bytes(); //print contents of function
 				break;
 			case 'l': //count lines -l
 				linesonly = 1;
-				int lines();
-				cout << lines();
+				int lines(); //initialize function
+				cout << lines(); //print contents of function
 				break;
 			case 'w': //call -w to count words
 				wordsonly = 1;
-				int words();
-				cout << words();
+				int words(); //initialize function
+				cout << words(); //print contents of function
 				break;
 			case 'u': //count unique words -u
 				uwordsonly = 1;
-				int unique();
-				cout << unique();
+				int unique(); //initialize function
+				cout << unique(); //print contents of function
 				break;
 			case 'L': //count longest line -L
 				longonly = 1;
@@ -84,7 +84,7 @@ int main(int argc, char *argv[])
 		}
 	}
 
-	
+
 	//This is the default when no --argument is specified
 	//prints lines, words, bytes
 	string text;
@@ -108,16 +108,16 @@ int main(int argc, char *argv[])
 			}
 
 			if(text[i] == '\n')
-			++lineCount;			
+			++lineCount;
 		}
 
 		totalLetters = space + letterCount;
-		cout << lineCount << " " <<  wordsCount + 1 << " " <<  totalLetters  << " " <<  text  <<"\n"; 
+		cout << lineCount << " " <<  wordsCount + 1 << " " <<  totalLetters  << " " <<  text  <<"\n";
 		//reset all the values for next string
-		space = 0; 
+		space = 0;
 		wordsCount = 0;
-		lineCount = 1; 
-		letterCount = 0;	
+		lineCount = 1;
+		letterCount = 0;
 
 	}
 
@@ -127,13 +127,13 @@ int main(int argc, char *argv[])
 
 //function to count number of bytes
 int bytes(){
-	string input; 
-	int count = 0; 
-	int whitespace = 0; 
+	string input;
+	int count = 0;
+	int whitespace = 0;
 	int total;
 
        while(getline(cin,input)){ //gets line of input
- 
+
 		for(int i = 0; i < input.size(); i++){
 
 			if(isspace(input[i])){
@@ -171,7 +171,7 @@ int words(){
 
 		cout << wordCount + 1 << "\n";
 		wordCount = 0;
-		
+
 	}
 
 } //end function
@@ -180,8 +180,8 @@ int words(){
 //function to count number of lines
 int lines(){
 
-	string wrd; 
-	int linesNumbr = 1; 
+	string wrd;
+	int linesNumbr = 1;
 	while(getline(cin,wrd)){
 
 		for(int i = 0; i<wrd.size(); i++){
@@ -208,5 +208,22 @@ int unique(){
 				cout << (*i).first << ":\t" << (*i).second << "\n";
 			}
 
-	}		
+	}
 }//end function
+
+int Longest(){
+
+	map<string, int> Map;
+	for(map<string, int>::iterator it = Map.begin();it != Map.end(); it++){
+		// Prints out string followed by an integer.
+		cout << it->first << ":\t" << it->second << endl;
+
+	}
+
+
+
+
+
+
+
+}
