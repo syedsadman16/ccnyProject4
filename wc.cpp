@@ -10,7 +10,7 @@
  *
  *
  * Finally, please indicate approximately how many hours you spent on this:
- * #hours: 5
+ * #hours: 7-8
  */
 #include <iostream>
 #include <string>
@@ -83,6 +83,7 @@ int main(int argc, char *argv[])
 				return 1;
 		}
 	}
+
 	
 	//This is the default when no --argument is specified
 	//prints lines, words, bytes
@@ -94,18 +95,22 @@ int main(int argc, char *argv[])
 	int wordsCount = 0;
 
 	while(getline(cin,text)) {
+
 		for(int i = 0; i < text.size(); i++){
+
 			if(isspace(text[i])){
 			space++;
 			wordsCount++;
 			}
+
 			else {
 			letterCount++;
 			}
+
 			if(text[i] == '\n')
-			++lineCount;
-			
-	}
+			++lineCount;			
+		}
+
 		totalLetters = space + letterCount;
 		cout << lineCount << " " <<  wordsCount + 1 << " " <<  totalLetters  << " " <<  text  <<"\n"; 
 		//reset all the values for next string
@@ -116,9 +121,9 @@ int main(int argc, char *argv[])
 
 	}
 
-
 			return 0;
-} //end main function
+} //end MAIN function
+
 
 //function to count number of bytes
 int bytes(){
@@ -127,16 +132,20 @@ int bytes(){
 	int whitespace = 0; 
 	int total;
 
-       while(getline(cin,input)){ //gets line of input 
+       while(getline(cin,input)){ //gets line of input
+ 
 		for(int i = 0; i < input.size(); i++){
 
 			if(isspace(input[i])){
 			whitespace++;
 			}
+
 			else {
 			count++;
 			}
-	}
+
+ 		}
+
 		total = count + whitespace;
 		cout << total << "\n";
 		count = 0;
@@ -144,80 +153,60 @@ int bytes(){
 
         }
 
-} //end bytes function
+} //end function
+
 
 //function to count number of words
 int words(){
+
 	string word;
 	int wordCount;
+
 	while(getline(cin,word)){
+
 		for(int i = 0; i < word.size(); i++){
 			if(isspace(word[i]))
 			wordCount++;
 		}
+
 		cout << wordCount + 1 << "\n";
 		wordCount = 0;
 		
 	}
 
-} //end words function
+} //end function
+
 
 //function to count number of lines
 int lines(){
+
 	string wrd; 
 	int linesNumbr = 1; 
 	while(getline(cin,wrd)){
+
 		for(int i = 0; i<wrd.size(); i++){
 			if(wrd[i] == '\n')
 			linesNumbr++;
 		}
 			cout << linesNumbr<<"\n";
 			linesNumbr = 1;
-			}
-}//end line function
+
+	}
+}//end function
 
 
+//function to count unique words from stdin
 int unique(){
 
 	map<string,int> test;
 	string uniq;
 
 	while(cin >> uniq){
+
 		test[uniq]++; //add uniq to map
-		for(map<string,int>::iterator i = test.begin(); i != test.end(); i++) {
+		for(map<string,int>::iterator i = test.begin(); i != test.end(); i++){
 				cout << (*i).first << ":\t" << (*i).second << "\n";
-			//test.clear();
-
 			}
-			
+
 	}		
-
-
 }//end function
-
-//function to count longest line
-#if 0
-int longest(){
-	string line; 
-	int longest;
-	int maxwords = 0;
-	int counts = 0;
-	vector<string> str;
-	
-	while(getline(cin, line)){
-		line.push_back(str);
-		for(int i =0; i<str.size(); i++){
-			for(int j = 1; j < line.size() - 1; j++){
-			if(isspace(str[i][j]){
-			maxwords++;
-			}
-			else {
-			counts++;
-			}
-			}
-		if(counts + maxwords > longest)
-	//	cout << "
-		}	
-	} //end while loop
-} //end function
-#endif
