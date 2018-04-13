@@ -13,6 +13,7 @@ using std::cout;
 #include <algorithm>
 using std::swap;
 using std::min;
+using namespace std;
 
 static const char* usage =
 "Usage: %s [OPTIONS]...\n"
@@ -61,32 +62,61 @@ int main(int argc, char *argv[]) {
 				return 1;
 		}
 	}
-
 	/* NOTE: the system's shuf does not read stdin *and* use -i or -e.
 	 * Even -i and -e are mutally exclusive... */
 
 	/* TODO: write me... */
 	//manual input
-	int x; char k;
-	string V;
+	int t=0;
+	if(echo==1){
+		int x; string k;
+		vector<string> V;
 
-	/*while (optind < argc)
-    V+=argv[optind++];
-	cout<<'\n';*/
+		while (optind < argc)
+			V.push_back(argv[optind++]);
 
-	getline(cin,V);
-	cout<<'\n';
-
-	srand(time(0));
-	for(int i=0;i<V.length()-1;i++){
-		x=rand()%(V.length()-i)+i;
-		k=V[x];
-		V[x]=V[i];
-		V[i]=k;
+		srand(time(0));
+		for(int i=0;i<V.size()-1;i++){
+			x=rand()%(V.size()-i)+i;
+			k=V[x];
+			V[x]=V[i];
+			V[i]=k;
+			}
+		for(int i=0;i<V.size();i++) cout<<V[i]<<'\n';
 		}
-	/*for(int i=0;i<V.size();i++){
-		cout<<V[i];
-		}*/
-	cout<<V<<'\n';
+		else if(rlow<=rhigh){
+			int x; int k;
+			vector<int> V2;
+			for(int i=rlow;i<=rhigh;i++){
+				V2.push_back(i);
+				}
+			srand(time(0));
+			for(int i=0;i<V2.size()-1;i++){
+				x=rand()%(V2.size()-i)+i;
+				k=V2[x];
+				V2[x]=V2[i];
+				V2[i]=k;
+				}
+			for(int i=0;i<V2.size();i++) cout<<V2[i]<<'\n';
+		}
+		else if(count==atol(optarg)){
+			int x; string k,s;
+			vector<string> V3;
+			while(cin>>s) V3.push_back(s);
+			for(int i=0;i<V3.size()-1;i++){
+				x=rand()%(V3.size()-i)+i;
+				k=V3[x];
+				V3[x]=V3[i];
+				V3[i]=k;
+			}
+			if(count<=v=V3.size()){
+				for(int i=0;i<count;i++){
+					cout<<V3[i]<<'\n';
+				}
+			}
+			else{
+				for(int i=0;i<V3.size();i++) cout<<V3[i]<<'\n';
+			}
+		}
 	return 0;
 }
