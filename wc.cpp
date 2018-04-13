@@ -21,6 +21,7 @@ using std::set;
 #include <getopt.h> // to parse long arguments.
 #include <cstdio> // printf
 #include <vector>
+#include <map>
 using namespace std;
 
 static const char* usage =
@@ -68,6 +69,8 @@ int main(int argc, char *argv[])
 				break;
 			case 'u': //count unique words -u
 				uwordsonly = 1;
+				int unique();
+				cout << unique();
 				break;
 			case 'L': //count longest line -L
 				longonly = 1;
@@ -82,6 +85,7 @@ int main(int argc, char *argv[])
 	}
 	
 	//This is the default when no --argument is specified
+	//prints lines, words, bytes
 	string text;
 	int letterCount = 0;
 	int space = 0;
@@ -172,6 +176,25 @@ int lines(){
 			}
 }//end line function
 
+
+int unique(){
+
+	map<string,int> test;
+	string uniq;
+
+	while(cin >> uniq){
+		test[uniq]++; //add uniq to map
+		for(map<string,int>::iterator i = test.begin(); i != test.end(); i++) {
+				cout << (*i).first << ":\t" << (*i).second << "\n";
+			//test.clear();
+
+			}
+			
+	}		
+
+
+}//end function
+
 //function to count longest line
 #if 0
 int longest(){
@@ -198,39 +221,3 @@ int longest(){
 	} //end while loop
 } //end function
 #endif
-
-int unique(){
-	string uniq;
-	vector<string> array;
-	
-	while(getline(cin, uniq)){
-		for(int i = 0; i < uniq.size(); i++) {
-
-	
-
-		}
-	}		
-/*
-int i = 0;
-i++
-vector[i];
-*/
-
-
-
-//once it hits a space, take f[0] and f[space -1] and put it in first element of array
-
-
-for loop array[i] ex: index 1
-	for loop pushes back string[j] ex: j goes until first isspace(string[j])
-		break out;
-index 2
-	etc
-
-
-
-
-
-
-
-}
