@@ -128,7 +128,7 @@ int main(int argc, char *argv[]) {
 
 							cout << Unique << endl;
 			}else{
-					// do nothing here no duplicatdsssses to be shown!!!
+					// do nothing here no duplicates to be shown!!!
 			}
 		}
 	}
@@ -137,11 +137,11 @@ int main(int argc, char *argv[]) {
 			while (getline(cin,s)) F[s]++;
 			// just print it out: No numbers!!!
 			for (map<string,int>::iterator i = F.begin(); i != F.end(); i++) {
-			if (i->second == 1){
+			if(i->second == 1){
 						// This one prints the Unique ONLY
 							cout << (*i).first << endl;
 				}
-				if(i->second != 1){
+			if(i->second != 1){
 						string Duplicate = i->first; // Managing an invariant;
 						// This one prints the Duplicate's ONLY
 						cout << Duplicate << endl;
@@ -155,10 +155,10 @@ int main(int argc, char *argv[]) {
 			while (getline(cin,s)) F[s]++;
 			// just print it out:
 			for (map<string,int>::iterator i = F.begin(); i != F.end(); i++) {
-						if (i->second == 1){
+					if (i->second == 1){
 						// This one prints the numbers and the unique!
 						cout << setw(7) << (*i).second << " " << (*i).first << endl;
-						}
+					}
 			}
 	}
 
@@ -170,7 +170,7 @@ int main(int argc, char *argv[]) {
 					if (i->second != 1){
 						// This one prints out the number and the duplicate!
 						cout << setw(7) << (*i).second << " " << (*i).first << endl;
-						}
+					}
 			}
 	}
 
