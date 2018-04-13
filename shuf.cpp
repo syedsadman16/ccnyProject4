@@ -103,13 +103,15 @@ int main(int argc, char *argv[]) {
 			int x; string k,s;
 			vector<string> V3;
 			while(cin>>s) V3.push_back(s);
+
+			srand(time(0));
 			for(int i=0;i<V3.size()-1;i++){
 				x=rand()%(V3.size()-i)+i;
 				k=V3[x];
 				V3[x]=V3[i];
 				V3[i]=k;
 			}
-			if(count<=v=V3.size()){
+			if(count<=V3.size()){
 				for(int i=0;i<count;i++){
 					cout<<V3[i]<<'\n';
 				}
