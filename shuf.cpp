@@ -67,58 +67,52 @@ int main(int argc, char *argv[]) {
 
 	/* TODO: write me... */
 	//manual input
-	int t=0;
+
+	//-e
 	if(echo==1){
-		int x; string k;
+		int r; string k;
 		vector<string> V;
 
-		while (optind < argc)
+		while (optind<argc)
 			V.push_back(argv[optind++]);
 
 		srand(time(0));
 		for(int i=0;i<V.size()-1;i++){
-			x=rand()%(V.size()-i)+i;
-			k=V[x];
-			V[x]=V[i];
+			r=rand()%(V.size()-i)+i;
+			k=V[r];
+			V[r]=V[i];
 			V[i]=k;
 			}
-		for(int i=0;i<V.size();i++) cout<<V[i]<<'\n';
+
+			if(count!=-1){
+				if(count<=V.size()) for(int i=0;i<count;i++)cout<<V[i]<<'\n';
+				else for(int i=0;i<V.size();i++) cout<<V[i]<<'\n';
+			}
+
+			else for(int i=0;i<V.size();i++) cout<<V[i]<<'\n';
 		}
-		else if(rlow<=rhigh){
-			int x; int k;
+
+		//-i
+		else if(userange = true){
+			int r; int k;
 			vector<int> V2;
 			for(int i=rlow;i<=rhigh;i++){
 				V2.push_back(i);
 				}
 			srand(time(0));
 			for(int i=0;i<V2.size()-1;i++){
-				x=rand()%(V2.size()-i)+i;
-				k=V2[x];
-				V2[x]=V2[i];
+				r=rand()%(V2.size()-i)+i;
+				k=V2[r];
+				V2[r]=V2[i];
 				V2[i]=k;
 				}
-			for(int i=0;i<V2.size();i++) cout<<V2[i]<<'\n';
-		}
-		else if(count==atol(optarg)){
-			int x; string k,s;
-			vector<string> V3;
-			while(cin>>s) V3.push_back(s);
 
-			srand(time(0));
-			for(int i=0;i<V3.size()-1;i++){
-				x=rand()%(V3.size()-i)+i;
-				k=V3[x];
-				V3[x]=V3[i];
-				V3[i]=k;
+			if(count!=-1){
+				if(count<=V2.size()) for(int i=0;i<count;i++)cout<<V2[i]<<'\n';
+				else for(int i=0;i<V2.size();i++) cout<<V2[i]<<'\n';
 			}
-			if(count<=V3.size()){
-				for(int i=0;i<count;i++){
-					cout<<V3[i]<<'\n';
-				}
-			}
-			else{
-				for(int i=0;i<V3.size();i++) cout<<V3[i]<<'\n';
-			}
+
+			else for(int i=0;i<V2.size();i++) cout<<V2[i]<<'\n';
 		}
 	return 0;
 }
