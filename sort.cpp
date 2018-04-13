@@ -37,7 +37,7 @@ struct igncaseComp {
 void rundescending(vector<string> &values) //function for reverse
 {
 	sort(values.begin(), values.end());
-	for(size_t i=0; i < values.size()/2; i++)
+	for (size_t i=0; i < values.size()/2; i++)
 	{
 		swap(values[i], values[values.size()-1-i]);
 	}
@@ -63,6 +63,11 @@ void nosens(vector<string> &values) //function for ignorecase
 	sort(values.begin(), values.end(), igncaseComp());
 }
 
+/* The issue I had is resolved. However, there are still 4 errors remaining when I do the random tests
+
+Try: echo "this is a test" | ./sort
+
+*/
 
 int main(int argc, char *argv[]) {
 	// define long options
@@ -107,18 +112,14 @@ int main(int argc, char *argv[]) {
 		values.push_back(x);
 	}
 	cin.clear();
-
-	/* The issue I had is resolved. However, there are still 4 errors remaining when I do the random tests */
-
 	#else
 	string line;
 	vector<string> values;
-	ifstream f("file");
+	ifstream f ("file");
 	while (getline(f,line))
 	{
 		values.push_back(line);
 	}
-
 	#endif
 	if (descending)
 	{
