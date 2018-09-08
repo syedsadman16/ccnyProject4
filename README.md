@@ -1,0 +1,1 @@
+This project is from CSC10300 Introduction to Computing for Majors class where we covered the C++ programming language. In this project, we formed groups and were tasked with recreating some unix shell commands. 
